@@ -1,0 +1,35 @@
+﻿@model TarefaViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Criar nova tarefa</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tarefa</th>
+            <th>Previsão</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.TarefaItens) {
+        <tr>
+            <td>
+                <input type="checkbox" name="@item.Id" value="true" class="done-checkbox" />
+            </td>
+            <td>@item.Nome</td>
+            <td>@item.DataConclusao</td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Deletar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
