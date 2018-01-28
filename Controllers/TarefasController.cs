@@ -30,5 +30,25 @@ namespace Tarefas.Controllers
 
             return View(model);
         }
+
+        public IActionResult AdicionarItem()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AdicionarItemTarefa(TarefaItem tarefa)
+        {
+
+            if (ModelState.IsValid)
+            {
+                await _tarefaService.AdicionarItem(tarefa);
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View(tarefa);
+        }
+
+
     }
 }
